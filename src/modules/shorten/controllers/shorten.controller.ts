@@ -10,6 +10,7 @@ import {
 import { Response } from 'express';
 import { ShortenService } from '../services/shorten.service';
 import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { CreateShortenDto } from '../dto/shorten.dto';
 
 @Controller('shorten')
 @ApiTags('shorten URL')
@@ -32,10 +33,10 @@ export class ShortenController {
       qrCode: 'data-img:base64...',
     },
   })
-  async shorten(@Body('originalUrl') originalUrl: string) {
-    const shorten = await this.shortenService.shortenUrl(originalUrl);
+  async shorten(@Body() payload: CreateShortenDto) {
+    const shorten = await this.shortenService.shortenUrl(payload.originalUrl);
     return {
-      shortUrl: `${process.env.APP_URL}/shorten/${shorten?.shortId}`,
+      shortUrl: `${process.env.APP_URL}/api/shorten/${shorten?.shortId}`,
       qrCode: shorten?.qrCode,
       originalUrl: shorten?.originalUrl,
       clicks: shorten?.clicks,

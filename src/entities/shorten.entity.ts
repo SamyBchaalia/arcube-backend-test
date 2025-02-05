@@ -15,6 +15,9 @@ export class Shorten extends Document {
 
   @Prop({ default: 0 })
   clicks: number;
+
+  @Prop({ required: true })
+  createdAt: Date;
 }
 
 export const ShortenSchema = SchemaFactory.createForClass(Shorten);

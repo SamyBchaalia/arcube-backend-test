@@ -13,7 +13,12 @@ export class ShortenService {
     try {
       const shortId: string = shortid.generate();
       const qrCode: string = await QRCode.toDataURL(shortId);
-      const doc = await this.urlModel.create({ originalUrl, shortId, qrCode });
+      const doc = await this.urlModel.create({
+        originalUrl,
+        shortId,
+        qrCode,
+        createdAt: new Date(),
+      });
       return this.urlModel.findById(doc._id);
     } catch (error) {
       Logger.error(error);
@@ -30,6 +35,9 @@ export class ShortenService {
     return url.originalUrl;
   }
   async getShortenedUrls(ids: string[]): Promise<Shorten[]> {
-    return await this.urlModel.find({ _id: { $in: ids } });
+    //order by creation date
+    return await this.urlModel.find({ _id: { $in: ids } }).sort({
+      createdAt: -1,
+    });
   }
 }
