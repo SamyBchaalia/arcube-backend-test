@@ -10,6 +10,9 @@ import { Logger } from '@nestjs/common';
 export class URLReachableValidator implements ValidatorConstraintInterface {
   async validate(url: string) {
     try {
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = `https://${url}`;
+      }
       const response = await axios.get(url, { timeout: 5000 });
       return response.status >= 200 && response.status < 400;
     } catch (error) {
