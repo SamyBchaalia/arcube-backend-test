@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { ShortenService } from '../services/shorten.service';
-import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateShortenDto } from '../dto/shorten.dto';
 
 @Controller('shorten')
@@ -18,7 +18,14 @@ export class ShortenController {
   constructor(private readonly shortenService: ShortenService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Shorten a long URL', // A brief description of the operation
+    description:
+      'This endpoint shortens a long URL and generates a QR code for it.',
+  })
   @ApiBody({
+    description: 'The URL to be shortened',
+    type: CreateShortenDto,
     schema: {
       example: {
         originalUrl:
@@ -27,10 +34,16 @@ export class ShortenController {
     },
   })
   @ApiOkResponse({
-    description: 'Shorten URL successfully',
-    example: {
-      shortUrl: `${process.env.APP_URL}/api/shorten/abc123`,
-      qrCode: 'data-img:base64...',
+    description: 'Successfully shortened the URL.',
+    schema: {
+      example: {
+        shortUrl: `${process.env.APP_URL}/api/shorten/abc123`,
+        qrCode: 'data:image/png;base64,...',
+        originalUrl:
+          'https://www.google.com/search?q=google+image+long+url&rlz=1C1OPNX_enTN1137TN1137&oq=google+image+long+url&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRhA0gEIMjg5OGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8',
+        clicks: 150,
+        _id: 'unique_object_id',
+      },
     },
   })
   async shorten(@Body() payload: CreateShortenDto) {
@@ -45,11 +58,55 @@ export class ShortenController {
   }
 
   @Get(':shortId')
+  @ApiOperation({
+    summary: 'Redirect to the original URL using the shortened URL',
+    description:
+      'This endpoint redirects users to the original URL based on the shortened URL identifier.',
+  })
+  @ApiOkResponse({
+    description: 'Redirect to the original URL.',
+  })
   async redirect(@Param('shortId') shortId: string, @Res() res: Response) {
     const originalUrl = await this.shortenService.getOriginalUrl(shortId);
     return res.redirect(HttpStatus.FOUND, originalUrl);
   }
   @Post('ids')
+  @ApiOperation({
+    summary: 'Retrieve multiple shortened URLs by their IDs',
+    description:
+      'This endpoint fetches information about multiple shortened URLs based on an array of IDs.',
+  })
+  @ApiBody({
+    description: 'An array of shortened URL IDs',
+    schema: {
+      example: {
+        ids: ['abc123', 'def456', 'ghi789'],
+      },
+    },
+  })
+  @ApiOkResponse({
+    description: 'Successfully retrieved the shortened URLs.',
+    isArray: true,
+    schema: {
+      example: [
+        {
+          shortUrl: `${process.env.APP_URL}/api/shorten/abc123`,
+          qrCode: 'data:image/png;base64,...',
+          originalUrl:
+            'https://www.google.com/search?q=google+image+long+url&rlz=1C1OPNX_enTN1137TN1137&oq=google+image+long+url&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRhA0gEIMjg5OGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8',
+          clicks: 150,
+          _id: 'unique_object_id',
+        },
+        {
+          shortUrl: `${process.env.APP_URL}/api/shorten/def456`,
+          qrCode: 'data:image/png;base64,...',
+          originalUrl: 'https://example.com',
+          clicks: 25,
+          _id: 'another_object_id',
+        },
+      ],
+    },
+  })
   async getShortenedIds(@Body('ids') ids: string[]) {
     const links = await this.shortenService.getShortenedUrls(ids);
     return links.map((link) => ({
