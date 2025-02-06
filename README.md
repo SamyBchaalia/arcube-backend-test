@@ -42,13 +42,13 @@ PORT=3000
 
 Start the development server:
 
-\`\`\`sh
+````shell
 npm run start
-\`\`\`
+```
 
 ## 📂 Project Structure
 
-\`\`\`
+```
 .
 ├── .vscode # Visual Studio Code settings
 ├── src
@@ -84,23 +84,23 @@ npm run start
 ├── tsconfig.build.json # TypeScript build configuration
 └── tsconfig.json # TypeScript configuration
 
-\`\`\`
+```
 
 ## 🧪 Testing
 
 Run tests using:
 
-\`\`\`sh
+```shell
 npm run test
-\`\`\`
+```
 
 ## 🚀 Deployment
 
 Deploy using **Vercel, Netlify, or your preferred hosting platform**:
 
-\`\`\`sh
+```shell
 vercel deploy # For Vercel
-\`\`\`
+````
 
 ## 📜 License
 
