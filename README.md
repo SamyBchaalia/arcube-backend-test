@@ -42,13 +42,13 @@ PORT=3000
 
 Start the development server:
 
-````shell
+```shell
 npm run start
 ```
 
 ## 📂 Project Structure
 
-```
+```shell
 .
 ├── .vscode # Visual Studio Code settings
 ├── src
@@ -100,7 +100,7 @@ Deploy using **Vercel, Netlify, or your preferred hosting platform**:
 
 ```shell
 vercel deploy # For Vercel
-````
+```
 
 ## 📜 License
 
