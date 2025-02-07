@@ -12,7 +12,9 @@ export class ShortenService {
   async shortenUrl(originalUrl: string): Promise<Shorten | null> {
     try {
       const shortId: string = shortid.generate();
-      const qrCode: string = await QRCode.toDataURL(shortId);
+      const qrCode: string = await QRCode.toDataURL(
+        `${process.env.APP_URL}/api/shorten/${shortId}`,
+      );
       const doc = await this.urlModel.create({
         originalUrl,
         shortId,
