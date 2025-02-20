@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import * as shortid from 'shortid';
 import { Shorten } from 'src/entities/shorten.entity';
 import * as QRCode from 'qrcode';
+import Anthropic from '@anthropic-ai/sdk';
+import { TextBlock } from '@anthropic-ai/sdk/resources';
 
 @Injectable()
 export class ShortenService {
@@ -41,5 +43,26 @@ export class ShortenService {
     return await this.urlModel.find({ _id: { $in: ids } }).sort({
       createdAt: -1,
     });
+  }
+  async proxyChatBot(
+    messages: { role: 'user' | 'assistant'; content: string }[],
+  ) {
+    try {
+      const anthropic: Anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+        dangerouslyAllowBrowser: true,
+      });
+      const msg = await anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1024,
+        messages: messages,
+      });
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return msg.content.map((el: TextBlock) => {
+        return el.text;
+      });
+    } catch (error) {
+      return { error: error.response?.data || 'API request failed' };
+    }
   }
 }

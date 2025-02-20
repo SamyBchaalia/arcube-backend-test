@@ -117,4 +117,15 @@ export class ShortenController {
       _id: link._id,
     }));
   }
+
+  @Post('bot')
+  async proxyAnthropic(
+    @Body()
+    body: {
+      messages: { role: 'user' | 'assistant'; content: string }[];
+    },
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return this.shortenService.proxyChatBot(body.messages);
+  }
 }
