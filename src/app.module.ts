@@ -8,7 +8,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb://localhost:27017/shortenUrl'),
+    MongooseModule.forRoot(
+      `mongodb://${process.env.MONGO_HOST}/${process.env.MONGO_DATABASE}`,
+    ),
     ShortenModule,
   ],
   controllers: [AppController],
