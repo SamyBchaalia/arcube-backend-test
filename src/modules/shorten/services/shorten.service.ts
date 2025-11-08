@@ -48,6 +48,16 @@ export class ShortenService {
     messages: { role: 'user' | 'assistant'; content: string }[],
   ) {
     try {
+      Logger.log(`[proxyChatBot] Starting request with ${messages.length} messages`);
+
+      // Validate API key
+      if (!process.env.ANTHROPIC_API_KEY) {
+        Logger.error('[proxyChatBot] ANTHROPIC_API_KEY is not set in environment variables');
+        return { error: 'Anthropic API key not configured' };
+      }
+
+      Logger.log('[proxyChatBot] API key is present, initializing Anthropic client');
+
       const anthropic: Anthropic = new Anthropic({
         apiKey: process.env.ANTHROPIC_API_KEY,
         dangerouslyAllowBrowser: true,
@@ -96,17 +106,39 @@ Contact & Social:
 Be professional, helpful, and knowledgeable about Sami's background when assisting with tasks. You have deep knowledge of his technical expertise and can provide insights based on his experience. When users inquire about scheduling meetings or calls, provide the Calendly link for easy booking.`,
       };
 
+      Logger.log('[proxyChatBot] Sending request to Anthropic API...');
+
       const msg = await anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         max_tokens: 1024,
         messages: [systemMessage, ...messages],
       });
+
+      Logger.log(`[proxyChatBot] Successfully received response with ${msg.content.length} content blocks`);
+
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return msg.content.map((el: TextBlock) => {
         return el.text;
       });
     } catch (error) {
-      return { error: error.response?.data || 'API request failed' };
+      Logger.error('[proxyChatBot] Error occurred during Anthropic API call');
+      Logger.error('[proxyChatBot] Error details:', error);
+
+      // Log additional error information if available
+      if (error?.status) {
+        Logger.error(`[proxyChatBot] HTTP Status: ${error.status}`);
+      }
+      if (error?.message) {
+        Logger.error(`[proxyChatBot] Error message: ${error.message}`);
+      }
+      if (error?.response?.data) {
+        Logger.error('[proxyChatBot] Response data:', JSON.stringify(error.response.data));
+      }
+      if (error?.stack) {
+        Logger.error(`[proxyChatBot] Stack trace: ${error.stack}`);
+      }
+
+      return { error: error.response?.data || error.message || 'API request failed' };
     }
   }
 
@@ -114,6 +146,16 @@ Be professional, helpful, and knowledgeable about Sami's background when assisti
     messages: { role: 'user' | 'assistant'; content: string }[],
   ) {
     try {
+      Logger.log(`[proxyNbvChatBot] Starting request with ${messages.length} messages`);
+
+      // Validate API key
+      if (!process.env.ANTHROPIC_API_KEY) {
+        Logger.error('[proxyNbvChatBot] ANTHROPIC_API_KEY is not set in environment variables');
+        return { error: 'Anthropic API key not configured' };
+      }
+
+      Logger.log('[proxyNbvChatBot] API key is present, initializing Anthropic client');
+
       const anthropic: Anthropic = new Anthropic({
         apiKey: process.env.ANTHROPIC_API_KEY,
         dangerouslyAllowBrowser: true,
@@ -325,17 +367,39 @@ IMPORTANT: Do NOT refer to yourself as AI, a bot, or artificial intelligence. Pr
 Provide detailed, value-driven responses and suggest scheduling consultations with Lou Natale when appropriate.`,
       };
 
+      Logger.log('[proxyNbvChatBot] Sending request to Anthropic API...');
+
       const msg = await anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022',
         max_tokens: 1024,
         messages: [systemMessage, ...messages],
       });
+
+      Logger.log(`[proxyNbvChatBot] Successfully received response with ${msg.content.length} content blocks`);
+
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return msg.content.map((el: TextBlock) => {
         return el.text;
       });
     } catch (error) {
-      return { error: error.response?.data || 'API request failed' };
+      Logger.error('[proxyNbvChatBot] Error occurred during Anthropic API call');
+      Logger.error('[proxyNbvChatBot] Error details:', error);
+
+      // Log additional error information if available
+      if (error?.status) {
+        Logger.error(`[proxyNbvChatBot] HTTP Status: ${error.status}`);
+      }
+      if (error?.message) {
+        Logger.error(`[proxyNbvChatBot] Error message: ${error.message}`);
+      }
+      if (error?.response?.data) {
+        Logger.error('[proxyNbvChatBot] Response data:', JSON.stringify(error.response.data));
+      }
+      if (error?.stack) {
+        Logger.error(`[proxyNbvChatBot] Stack trace: ${error.stack}`);
+      }
+
+      return { error: error.response?.data || error.message || 'API request failed' };
     }
   }
 }
