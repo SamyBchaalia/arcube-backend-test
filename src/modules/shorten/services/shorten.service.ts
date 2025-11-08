@@ -109,7 +109,7 @@ Be professional, helpful, and knowledgeable about Sami's background when assisti
       Logger.log('[proxyChatBot] Sending request to Anthropic API...');
 
       const msg = await anthropic.messages.create({
-        model: 'claude-3-sonnet-20240229',
+        model: 'claude-3-5-haiku-20241022',
         max_tokens: 1024,
         messages: [systemMessage, ...messages],
       });
@@ -370,7 +370,7 @@ Provide detailed, value-driven responses and suggest scheduling consultations wi
       Logger.log('[proxyNbvChatBot] Sending request to Anthropic API...');
 
       const msg = await anthropic.messages.create({
-        model: 'claude-3-sonnet-20240229',
+        model: 'claude-3-5-haiku-20241022',
         max_tokens: 1024,
         messages: [systemMessage, ...messages],
       });
