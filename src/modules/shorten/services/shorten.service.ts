@@ -280,6 +280,44 @@ Lou Natale is the Managing Director with extensive international experience in s
 - Market expansion support
 - Client relationship management
 
+### 7. SALES TEAM EVALUATION
+**Target Audience**: Companies seeking to build and maintain high-performing sales teams
+**Description**: Comprehensive evaluation of new and existing sales team members using objective Competency Barometers to identify top performers and coaching opportunities
+**Core Philosophy**: "A well-trained and skilled sales team will deliver consistent results and exceed revenue expectations."
+
+**Why Sales Team Evaluation is Critical**:
+- Prevents costly hiring mistakes and reduces turnover
+- Identifies coaching opportunities before performance issues escalate
+- Builds teams of Top Performers through objective assessment
+- Eliminates management guesswork about underperformance causes
+- Ensures proper investment in growth versus losing revenue
+
+**The Hidden Costs of Underperforming Salespeople**:
+Organizations often overlook underperforming salespeople, resulting in astronomical hard costs and rarely measured human and financial consequences:
+- Lost Productivity and revenue opportunities
+- Wasted time and money invested in training
+- Damaged company and sales team morale
+- Tarnished company and individual reputations
+- Financial burden on affected families
+- Customer churn and relationship damage
+- Loss of confidence, morale, and broken spirits for all impacted
+
+**NBV Group's Evaluation Approach**:
+- **Competency Barometers**: Objective measurement against prerequisite skill sets
+- **Dual Assessment**: Evaluation of both Quantitative (metrics, numbers) and Qualitative (soft skills, behaviors) competencies
+- **Interview Stage Evaluation**: Assess potential candidates objectively before hiring
+- **Ongoing Tenure Evaluation**: Continuous assessment throughout employment to ensure consistent performance
+- **Coaching vs. Replacement**: Identify who can be coached to excellence versus who needs different opportunities
+
+**Required Commitments for Success**:
+Transformation of underperforming salespeople requires two essential commitments:
+1. Recognition of the current state (honest assessment)
+2. Mutual commitment to work diligently to change course
+Without both commitments from company AND salesperson, success is impossible.
+
+**The NBV Group Advantage**:
+Stop going down the costly road of hiring mistakes and performance issues. Instead, objectively evaluate candidates and team members at every stage, investing in growth and winning new business rather than managing failure. Do things right for your company, new hires, and existing team members to focus on revenue growth and business success.
+
 ## AI AND TECHNOLOGY PHILOSOPHY
 NBV Group recognizes AI's transformative power in sales while emphasizing the irreplaceable value of human connection.
 
