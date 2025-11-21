@@ -12,7 +12,12 @@ void (async () => {
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
   );
-  app.enableCors();
+  app.enableCors({
+    origin: ['https://nbvgroup.ca', 'https://sami.benchaalia.com'], // or '*' temporarily for debugging
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
