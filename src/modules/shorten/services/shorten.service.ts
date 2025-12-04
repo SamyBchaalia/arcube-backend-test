@@ -181,17 +181,126 @@ NBV Group is a leading sales consulting and training company providing solutions
 **Company Philosophy**: "Excellence in Sales Performance" - Customer perception is the ONLY reality that counts. Professional salespeople put customers first and build trusted, long-lasting relationships.
 
 ## LOU NATALE - MANAGING DIRECTOR
-Lou Natale is the Managing Director with extensive international experience in sales, management, and marketing across multiple industries.
+Lou Natale is the Managing Director with extensive international experience in sales, management, and marketing across multiple industries. He is an Innovative Senior Sales and Business Development Executive who leverages extensive C-suite expertise to drive growth and operational excellence in the telecommunications and technology industries.
 
-**Fortune 500 Experience**: AT&T, Cisco Systems, Ericsson Communications, Nokia, Redknee Inc. (software start-up)
+**Contact Information**:
+- Email: lounatale@nbvgroup.ca (business) / lounatale@rogers.com (personal)
+- Phone: 1-416-564-2261
+- Location: Toronto, Ontario, Canada
+- LinkedIn: www.linkedin.com/in/lou-natale
 
-**Notable Client Portfolio**: One37 Identity, Atomic Energy of Canada, Rogers Communications, Wind Mobile, Xtreme Labs, Nova Marketing
+**Fortune 500 Experience**: AT&T, Cisco Systems, Ericsson Communications, Nokia, Huawei Technologies, SAP, Redknee Inc.
+
+**Notable Client Portfolio**: One37 ID Digital Identity Platform, Atomic Energy of Canada (AECL), Rogers Communications, Videotron, Wind Mobile, Xtreme Labs, Nova Marketing, Alco Software, CV Management, Willstream (acquired by Orange Telecom), Digicel
 
 **Core Strengths**:
 - Building strong alliances and leading high-performing teams
 - Managing complex customer relationships in Telecom, Software, and Data Management
 - Exceptional trouble-shooting and problem-solving capabilities
 - Delivering superior results through proven methodologies
+- Employs breakthrough strategies in team leadership, mentoring, and contract negotiations
+- Builds high-performing, cross-functional teams to support high-transaction business development
+- Restores credibility, revives client relationships, and positions organizations for long-term success
+
+**Leadership Competencies**:
+- Sales Leadership & Strategic Sales Planning
+- Key Account Management & P&L Accountability
+- Business Development & Contract Negotiations
+- Market Analysis & Emerging Technologies
+- Business Case Development & Revenue Generation
+- Project & Program Management
+- Customer Relationships & Forecasting
+- C-Suite Selling & Team Development
+- Multisite Leadership & Direct Sales
+- Performance Management
+
+**Executive Expertise**: Strategic | Proactive | Collaborative | Tactical | Communicative | Optimistic
+
+**Notable Career Accomplishments**:
+- Strategic Contract Renewal and Growth: Achieved 282% of New Sales Revenue Target in 2022 at AT&T, 110% of plan in 2023, and 100% of plan in 2024
+- Secured first consulting contract for a bank client and renewed key agreements including: $8M three-year Ethernet on-demand contract, $3M Asia-Pac renewal, and new $3M two-year North American deal
+- Revenue and Profit Maximization: Expanded Nokia's portfolio offering and exceeded revenue and profit margins in 2016 and 2017 by 123% and 133%, respectively
+- Team Transformation: Trained and mentored diverse teams at Huawei, galvanizing teams to a "one mission/one team/one vision" culture, closing performance gaps within six months
+
+## DETAILED CAREER HISTORY
+
+### AT&T Global Solutions, Toronto, ON (2022 – Present)
+**GLOBAL ACCOUNT DIRECTOR**
+- Recruited to manage Canadian headquartered banks globally
+- Top priority: resolve project deployment issues and restore confidence
+- Drove client retention and business development through global account management
+- Expanded share of wallet with Canadian banks
+- Spearheaded multimillion-dollar US project addressing gaps in AT&T's partner collaboration
+- **Key Achievements**:
+  - Won first Professional Services project management contract for ~$3M, setting new standard for complex project execution
+  - Secured additional project management contract valued at over $2M
+  - Negotiated five-year, $60M+ contract with a major bank
+  - Secured $40M, four-year contract
+  - Won first consulting contract for a bank client
+  - Renewed $8M, three-year Ethernet on-demand contract
+  - Secured $3M Asia-Pac renewal
+  - Closed new $3M, two-year North American deal
+  - Achieved 282% of New Sales Revenue Target in 2022, 110% in 2023, 100% in 2024
+
+### SAP, Toronto, ON (2020 – 2022)
+**SALES DIRECTOR, CANADA AND NORTHEAST USA (RATING AND CHARGING DIVISION)**
+- Joined this business software and ERP leader to build and manage pipelines for large enterprises
+- Reported to SAP New York
+- **Key Achievements**:
+  - Built $10M pipeline with key clients including Bank of America, TD Bank, Xerox, and Citibank
+  - Secured $500K order from Cogeco for European Division
+
+### Nokia Networks, Inc, Toronto, ON (2016 – 2018)
+**VICE PRESIDENT SALES, ROGERS AND VIDEOTRON ACCOUNTS**
+- Recruited to lead sales strategy and execution to expand portfolio and win new revenue
+- **Key Achievements**:
+  - Created and deployed strategic plan aligned with customer priorities
+  - Won first order from Rogers
+  - Identified and steered opportunities in key segment to compete in $130M deal over four years
+  - Exceeded revenue and profit margins by 123% (2016) and 133% (2017)
+
+### Huawei Technologies Canada, Toronto, ON (2014 – 2016)
+**VICE PRESIDENT, MAJOR ACCOUNTS**
+- Hired to leverage experience and business acumen to motivate and drive diverse team performance
+- Spearheaded full-cycle key account oversight
+- Facilitated coordination between government relations team and industry influencers
+- Initiated proof of concept trials of new products across seven accounts
+- Leveraged existing business success to participate in $250M network swap/transformation with major MSO
+- **Key Achievements**:
+  - Trained and mentored employees to "one mission/one team/one vision" culture
+  - Closed performance gaps within six months
+  - Achieved 100% of plan
+
+### NBV Group, Toronto, ON (2012 – 2014)
+**MANAGING DIRECTOR**
+- Founded organization to provide professional training and consulting in telecommunications/technology industry
+- Specialized in improving business performance, boosting revenue and productivity
+- Identified new growth opportunities, ensured customer loyalty, built strategic business relationships
+- Served clients in Canada and internationally
+- Key clients include: One37 ID Digital Identity Platform, Atomic Energy of Canada (AECL), Xtreme Labs, Nova Marketing, Alco Software, CV Management, and Willstream (acquired by Orange Telecom)
+
+### Redknee, Inc, Toronto, ON (2010 – 2012)
+**VICE PRESIDENT SALES, ROGERS AND DIGICEL**
+- Hired to manage delicate transition and replacement of platform while retaining business and restoring credibility
+- **Key Achievements**:
+  - Drove global vendor presentations for Orascom Group, facilitating product sales to 11 global subsidiaries
+  - Generated $6M in new license revenue by resolving platform issue
+  - Secured $7M breakthrough order at Digicel Pacific
+  - Recognized as top 1% achiever
+
+### Earlier Career (Before 2010)
+**Ericsson Communications, Toronto, ON/Sweden (International Assignment)**
+- VICE PRESIDENT OF SALES AND MARKETING, Americas GSM Group
+- GENERAL MANAGER MOBILE SYSTEMS, Canada
+- Led international sales and marketing operations across the Americas
+- Managed Canadian mobile systems business
+
+**Cisco Systems, Toronto, ON**
+- CENTRAL REGION MANAGER
+- Led regional sales operations for major telecommunications equipment provider
+
+**NBV Group** (Earlier founding period)
+- MANAGING DIRECTOR
 
 **Professional Awards & Recognition**:
 - Top Sales Achiever of the Year
@@ -200,16 +309,19 @@ Lou Natale is the Managing Director with extensive international experience in s
 - Manager of the Year
 - Excellence in Management Award
 - Top Achiever in Complex Sales Training Competition (Harvard)
+- Top 1% Achiever (Redknee)
 
 **Educational Credentials & Training**:
-- Miller and Heiman: Strategic Selling, Contract Negotiation, Situational Leadership (London UK)
-- Harvard University Business School: Executive MBA Alumni Challenge Project (Boston)
-- Oxford University: Management Leadership Development Program (UK, Canada, Sweden)
-- London Management Consultants: Strategic Account Planning and Management
-- London Management Consultants: Exceptional Sales Performance
-- Forum Corporation: Performance Excellence
+- BA, History, University of Toronto, Toronto, ON
+- Oxford University: Management Development Program (London, Stockholm, and Toronto)
+- Harvard University School of Business: Executive MBA Alumni Challenge Project (Boston, MA)
+- Miller Heiman: Strategic Selling, Contract Negotiation Program, Situational Leadership (London, UK)
+- The Forum Group: Exceptional Sales Performance and Leadership (Boston)
+- London Management Consultants: Complex International Negotiation (London, UK)
 
-**Contact**: lounatale@nbvgroup.ca, 1-416-564-2261
+**Personal Interests**: Golf, Skiing, Winemaking, Gardening, Travelling, and Cooking
+
+**Languages**: English and fluent in Italian
 
 **Success Philosophy**: Lou attributes success to using coaches and trainers to leverage skills, focusing on basics, maintaining continuous learning culture, and daily skill development. "Star Performers" utilize coaches to stay at the top of their game.
 
