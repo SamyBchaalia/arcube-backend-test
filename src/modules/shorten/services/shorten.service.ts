@@ -327,72 +327,7 @@ Lou Natale is the Managing Director with extensive international experience in s
 
 ## COMPREHENSIVE SERVICES OFFERED
 
-### 1. BASIC SALES TRAINING 101
-**Target Audience**: New salespeople or those with several years of experience seeking foundation building
-**Description**: Comprehensive overview of the selling process with focus on QUALIFYING customer needs
-**Key Components**:
-- Feature vs. Advantage vs. Benefit training
-- Decision analysis process training
-- Customer perception understanding
-- Pipeline foundation building
-- Basic sales methodology
-**Core Principle**: "Customer perception is the ONLY reality that counts - You must understand what the customer perceives."
-
-### 2. ADVANCED SALES TRAINING
-**Target Audience**: Experienced salespeople seeking to master complex sales scenarios
-**Key Components**:
-- Complex sales scenario management
-- Buyer profiles and customer journey mapping
-- Journey from Supplier to Trusted Advisor
-- Personal needs analysis (Power, Achievement, Recognition, Affiliation, Order, Safety)
-- Organizational needs focus (Finance, Performance, Image)
-- Building trust-based customer relationships
-- Real-case studies and practical applications
-
-### 3. SALES COACHING
-**Target Audience**: Executive teams globally seeking ongoing performance improvement
-**Description**: Ongoing sales coaching to ensure skills are implemented immediately to ACCELERATE REVENUE
-**Key Components**:
-- Field accompaniment and real-time feedback
-- Skills adoption acceleration
-- Performance improvement and consistency building
-- Customized coaching programs for B2B environments
-- Customer meeting preparation
-- Creating a culture of prospecting
-
-### 4. SALES STRATEGIES & TACTICS
-**Target Audience**: Organizations needing strategic sales planning and competitive positioning
-**Description**: Development of STRATEGIC PLAN complete with Metrics, Milestones, and Practical Custom Tools
-**Key Components**:
-- Strategic and tactical plan development
-- Competitive landscape and market dynamics analysis
-- Revenue growth strategies and market analysis
-- Metrics and milestone tracking
-- Focus on top opportunities
-- Custom tools for business growth
-
-### 5. SALES WORKSHOPS
-**Target Audience**: Teams requiring specific skills development in focused sessions
-**Description**: CUSTOMIZED WORKSHOPS to deliver required skills including Sales Training, Negotiation Skills, and Proposal Writing
-**Key Components**:
-- Tailored through discovery process to meet specific goals
-- Strong Account Plans development
-- Customer Adoption Profile training
-- Understanding 5 Customer Segments (Innovators, Early Adopters, Early Majority, Late Majority, Laggards)
-- Customer Adoption Chasm Analysis
-- Available online or in-person
-
-### 6. BUSINESS DEVELOPMENT
-**Target Audience**: Companies needing hands-on business development support
-**Description**: Business development activities on behalf of clients on project and/or retainer basis
-**Key Components**:
-- Drive growth, strengthen client ties, and open new markets
-- In-field accompaniment for sales teams
-- Long-term success strategies
-- Market expansion support
-- Client relationship management
-
-### 7. SALES TEAM EVALUATION
+### 1. SALES TEAM EVALUATION
 **Target Audience**: Companies seeking to build and maintain high-performing sales teams
 **Description**: Comprehensive evaluation of new and existing sales team members using objective Competency Barometers to identify top performers and coaching opportunities
 **Core Philosophy**: "A well-trained and skilled sales team will deliver consistent results and exceed revenue expectations."
@@ -429,6 +364,71 @@ Without both commitments from company AND salesperson, success is impossible.
 
 **The NBV Group Advantage**:
 Stop going down the costly road of hiring mistakes and performance issues. Instead, objectively evaluate candidates and team members at every stage, investing in growth and winning new business rather than managing failure. Do things right for your company, new hires, and existing team members to focus on revenue growth and business success.
+
+### 2. BUSINESS DEVELOPMENT
+**Target Audience**: Companies needing hands-on business development support
+**Description**: Business development activities on behalf of clients on project and/or retainer basis
+**Key Components**:
+- Drive growth, strengthen client ties, and open new markets
+- In-field accompaniment for sales teams
+- Long-term success strategies
+- Market expansion support
+- Client relationship management
+
+### 3. SALES STRATEGIES & TACTICS WORKSHOPS
+**Target Audience**: Organizations needing strategic sales planning and competitive positioning
+**Description**: Development of STRATEGIC PLAN complete with Metrics, Milestones, and Practical Custom Tools
+**Key Components**:
+- Strategic and tactical plan development
+- Competitive landscape and market dynamics analysis
+- Revenue growth strategies and market analysis
+- Metrics and milestone tracking
+- Focus on top opportunities
+- Custom tools for business growth
+
+### 4. SALES WORKSHOPS
+**Target Audience**: Teams requiring specific skills development in focused sessions
+**Description**: CUSTOMIZED WORKSHOPS to deliver required skills including Sales Training, Negotiation Skills, and Proposal Writing
+**Key Components**:
+- Tailored through discovery process to meet specific goals
+- Strong Account Plans development
+- Customer Adoption Profile training
+- Understanding 5 Customer Segments (Innovators, Early Adopters, Early Majority, Late Majority, Laggards)
+- Customer Adoption Chasm Analysis
+- Available online or in-person
+
+### 5. SALES COACHING
+**Target Audience**: Executive teams globally seeking ongoing performance improvement
+**Description**: Ongoing sales coaching to ensure skills are implemented immediately to ACCELERATE REVENUE
+**Key Components**:
+- Field accompaniment and real-time feedback
+- Skills adoption acceleration
+- Performance improvement and consistency building
+- Customized coaching programs for B2B environments
+- Customer meeting preparation
+- Creating a culture of prospecting
+
+### 6. ADVANCED SALES TRAINING
+**Target Audience**: Experienced salespeople seeking to master complex sales scenarios
+**Key Components**:
+- Complex sales scenario management
+- Buyer profiles and customer journey mapping
+- Journey from Supplier to Trusted Advisor
+- Personal needs analysis (Power, Achievement, Recognition, Affiliation, Order, Safety)
+- Organizational needs focus (Finance, Performance, Image)
+- Building trust-based customer relationships
+- Real-case studies and practical applications
+
+### 7. BASIC SALES TRAINING 101
+**Target Audience**: New salespeople or those with several years of experience seeking foundation building
+**Description**: Comprehensive overview of the selling process with focus on QUALIFYING customer needs
+**Key Components**:
+- Feature vs. Advantage vs. Benefit training
+- Decision analysis process training
+- Customer perception understanding
+- Pipeline foundation building
+- Basic sales methodology
+**Core Principle**: "Customer perception is the ONLY reality that counts - You must understand what the customer perceives."
 
 ## AI AND TECHNOLOGY PHILOSOPHY
 NBV Group recognizes AI's transformative power in sales while emphasizing the irreplaceable value of human connection.
