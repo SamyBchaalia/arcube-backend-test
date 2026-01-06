@@ -13,7 +13,11 @@ void (async () => {
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
   );
   app.enableCors({
-    origin: ['https://nbvgroup.ca', 'https://sami.benchaalia.com'], // or '*' temporarily for debugging
+    origin: [
+      'https://nbvgroup.ca',
+      'https://sami.benchaalia.com',
+      'http://localhost:5173',
+    ], // or '*' temporarily for debugging
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
@@ -31,6 +35,17 @@ void (async () => {
     .setDescription('Desc')
     .setVersion('0.0.1')
     .addTag('docs')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'Authorization',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      'JWT-auth',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
