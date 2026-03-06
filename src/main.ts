@@ -18,6 +18,7 @@ void (async () => {
   app.enableCors({
     origin: [
       'https://nbvgroup.ca',
+      'https://www.nbvgroup.ca',
       'https://sami.benchaalia.com',
       'http://localhost:5173',
     ], // or '*' temporarily for debugging
