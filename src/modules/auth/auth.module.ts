@@ -4,11 +4,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './controllers/auth.controller';
+import { UsersController } from './controllers/users.controller';
 import { AuthService } from './services/auth.service';
 import { SeederService } from './services/seeder.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RolesGuard } from './guards/roles.guard';
 import { User } from './entities/user.entity';
+import { OrdersModule } from '../orders/orders.module';
 
 @Module({
   imports: [
@@ -24,9 +27,10 @@ import { User } from './entities/user.entity';
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([User]),
+    OrdersModule,
   ],
-  controllers: [AuthController],
-  providers: [AuthService, SeederService, JwtStrategy, JwtAuthGuard],
-  exports: [AuthService, JwtAuthGuard, JwtStrategy],
+  controllers: [AuthController, UsersController],
+  providers: [AuthService, SeederService, JwtStrategy, JwtAuthGuard, RolesGuard],
+  exports: [AuthService, JwtAuthGuard, RolesGuard, JwtStrategy, JwtModule],
 })
 export class AuthModule {}

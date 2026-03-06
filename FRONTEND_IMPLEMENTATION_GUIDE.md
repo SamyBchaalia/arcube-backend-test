@@ -16,6 +16,7 @@ This guide covers the implementation of a protected dashboard for managing Linke
 ## API Endpoints
 
 ### Base URL
+
 ```
 Production: https://your-api-domain.com/api
 Development: http://localhost:4000/api
@@ -24,6 +25,7 @@ Development: http://localhost:4000/api
 ### Authentication
 
 #### Login
+
 ```http
 POST /api/auth/login
 Content-Type: application/json
@@ -35,6 +37,7 @@ Content-Type: application/json
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -49,6 +52,7 @@ Content-Type: application/json
 ```
 
 **Error Response (401 Unauthorized):**
+
 ```json
 {
   "statusCode": 401,
@@ -58,6 +62,7 @@ Content-Type: application/json
 ```
 
 #### Get Profile (Verify Token)
+
 ```http
 GET /api/auth/profile
 Authorization: Bearer <accessToken>
@@ -68,6 +73,7 @@ Authorization: Bearer <accessToken>
 ### LinkedIn Posts
 
 #### Create Post (Protected)
+
 ```http
 POST /api/linkedin-posts
 Authorization: Bearer <accessToken>
@@ -79,6 +85,7 @@ Content-Type: application/json
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
@@ -88,11 +95,13 @@ Content-Type: application/json
 ```
 
 #### Get All Posts (Public)
+
 ```http
 GET /api/linkedin-posts
 ```
 
 **Response (200 OK):**
+
 ```json
 [
   {
@@ -104,6 +113,7 @@ GET /api/linkedin-posts
 ```
 
 #### Update Post (Protected)
+
 ```http
 PUT /api/linkedin-posts/:id
 Authorization: Bearer <accessToken>
@@ -115,6 +125,7 @@ Content-Type: application/json
 ```
 
 #### Delete Post (Protected)
+
 ```http
 DELETE /api/linkedin-posts/:id
 Authorization: Bearer <accessToken>
@@ -194,7 +205,8 @@ export interface CreatePostDto {
 
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -212,7 +224,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // Response interceptor - Handle 401 errors
@@ -225,7 +237,7 @@ api.interceptors.response.use(
       window.location.href = '/login';
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
@@ -648,7 +660,8 @@ export default App;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, sans-serif;
   background-color: #f5f5f5;
   color: #333;
 }
@@ -897,6 +910,7 @@ REACT_APP_API_URL=http://localhost:4000/api
 ```
 
 For production:
+
 ```env
 REACT_APP_API_URL=https://your-api-domain.com/api
 ```
@@ -906,6 +920,7 @@ REACT_APP_API_URL=https://your-api-domain.com/api
 ## Security Considerations
 
 1. **Token Storage**: JWT stored in localStorage. For enhanced security, consider:
+
    - HttpOnly cookies
    - Token refresh mechanism
 

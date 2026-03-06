@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status Update</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2196F3;
+            margin: 0;
+            font-size: 28px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+        .status-completed {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .status-cancelled {
+            background-color: #f44336;
+            color: white;
+        }
+        .status-refunded {
+            background-color: #FF9800;
+            color: white;
+        }
+        .status-pending {
+            background-color: #FFC107;
+            color: white;
+        }
+        .order-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        .message {
+            font-size: 18px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Order Status Update</h1>
+        </div>
+
+        <p>Hi {{userName}},</p>
+
+        <p>Your order status has been updated.</p>
+
+        <div class="order-info">
+            <strong>Order Number:</strong> {{orderNumber}}<br>
+            <strong>Total:</strong> ${{total}}
+        </div>
+
+        <div style="text-align: center;">
+            <span class="status-badge status-{{status}}">{{status}}</span>
+        </div>
+
+        <div class="message">
+            {{statusMessage}}
+        </div>
+
+        <div class="footer">
+            <p>Thank you for choosing {{appName}}!</p>
+            <p>If you have any questions, please don't hesitate to contact us.</p>
+            <p><a href="{{appUrl}}">Visit Our Website</a></p>
+        </div>
+    </div>
+</body>
+</html>

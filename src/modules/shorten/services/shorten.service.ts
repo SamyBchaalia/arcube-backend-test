@@ -1,9 +1,19 @@
 import { Injectable, Logger } from '@nestjs/common';
 import Anthropic from '@anthropic-ai/sdk';
 import { TextBlock } from '@anthropic-ai/sdk/resources';
+import { v4 as uuidv4 } from 'uuid';
+import { ChatHistoryService } from '../../chat-history/services/chat-history.service';
+import { AuthService } from '../../auth/services/auth.service';
+import { EmailService } from '../../email/services/email.service';
+import { BotType } from '../../chat-history/enums/bot-type.enum';
 
 @Injectable()
 export class ShortenService {
+  constructor(
+    private readonly chatHistoryService: ChatHistoryService,
+    private readonly authService: AuthService,
+    private readonly emailService: EmailService,
+  ) {}
   async proxyChatBot(
     messages: { role: 'user' | 'assistant'; content: string }[],
   ) {
@@ -69,7 +79,7 @@ Be professional, helpful, and knowledgeable about Sami's background when assisti
       Logger.log('[proxyChatBot] Sending request to Anthropic API...');
 
       const msg = await anthropic.messages.create({
-        model: 'claude-3-5-haiku-20241022',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1024,
         messages: [systemMessage, ...messages],
       });
@@ -104,9 +114,57 @@ Be professional, helpful, and knowledgeable about Sami's background when assisti
 
   async proxyNbvChatBot(
     messages: { role: 'user' | 'assistant'; content: string }[],
+    sessionId?: string,
+    guestUser?: { email: string; firstName: string; lastName: string; phoneNumber?: string },
+    metadata?: { ipAddress?: string; userAgent?: string },
+    authenticatedUserId?: string,
   ) {
     try {
       Logger.log(`[proxyNbvChatBot] Starting request with ${messages.length} messages`);
+
+      // Generate sessionId if not provided
+      const finalSessionId = sessionId || uuidv4();
+      Logger.log(`[proxyNbvChatBot] Using session ID: ${finalSessionId}`);
+
+      // Determine userId with priority: authenticated user > guest user > anonymous
+      let userId: string | undefined;
+
+      if (authenticatedUserId) {
+        // Priority 1: Authenticated user via JWT token
+        userId = authenticatedUserId;
+        Logger.log(`[proxyNbvChatBot] Using authenticated user ID: ${userId}`);
+      } else if (guestUser) {
+        // Priority 2: Guest user registration
+        try {
+          Logger.log(`[proxyNbvChatBot] Guest user data provided, creating/finding user`);
+          const result = await this.authService.findOrCreateGuestUser(
+            guestUser.email,
+            guestUser.firstName,
+            guestUser.lastName,
+            guestUser.phoneNumber,
+          );
+
+          userId = result.user.id;
+          Logger.log(`[proxyNbvChatBot] Using guest user ID: ${userId}`);
+
+          // Send welcome email if new user
+          if (result.isNew && result.tempPassword) {
+            Logger.log(`[proxyNbvChatBot] Sending welcome email to new guest user`);
+            await this.emailService.sendGuestWelcomeEmail(
+              result.user.email,
+              result.user.firstName || guestUser.firstName,
+              result.user.lastName || guestUser.lastName,
+              result.tempPassword,
+            );
+          }
+        } catch (emailError) {
+          // Log email errors but don't fail the chat
+          Logger.error(`[proxyNbvChatBot] Failed to send welcome email: ${emailError.message}`);
+        }
+      } else {
+        // Priority 3: Anonymous user
+        Logger.log(`[proxyNbvChatBot] No user authentication provided, chat session is anonymous`);
+      }
 
       // Validate API key
       if (!process.env.ANTHROPIC_API_KEY) {
@@ -121,10 +179,15 @@ Be professional, helpful, and knowledgeable about Sami's background when assisti
         dangerouslyAllowBrowser: true,
       });
 
+      // Add user authentication status to system context
+      const authStatusNote = userId
+        ? `\n\n**USER AUTHENTICATION STATUS**: This user is logged in and their conversation is being tracked.`
+        : `\n\n**USER AUTHENTICATION STATUS**: This user is NOT logged in. Their conversation is anonymous and not tracked. When appropriate (after providing helpful information), proactively mention that they can log in or create an account to keep track of their conversations and receive personalized follow-up. You can say something like: "If you'd like to keep track of our conversation and receive personalized follow-up, consider logging in or creating a free account at [your-app-url]/login"`;
+
       // Add comprehensive system context about NBV Group
       const systemMessage = {
         role: 'user' as const,
-        content: `You are NBV Group's Digital Assistant, representing Lou Natale and NBV Group - a leading sales consulting and training company with 30 years of proven experience.
+        content: `You are NBV Group's Digital Assistant, representing Lou Natale and NBV Group - a leading sales consulting and training company with 30 years of proven experience.${authStatusNote}
 
 ## COMPANY OVERVIEW
 NBV Group is a leading sales consulting and training company providing solutions in Canada and internationally, specializing in sales performance enhancement, business development, and revenue growth strategies for both startups and Fortune 500 companies.
@@ -527,12 +590,37 @@ Provide detailed, value-driven responses and suggest scheduling consultations wi
       Logger.log('[proxyNbvChatBot] Sending request to Anthropic API...');
 
       const msg = await anthropic.messages.create({
-        model: 'claude-3-5-haiku-20241022',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1024,
         messages: [systemMessage, ...messages],
       });
 
       Logger.log(`[proxyNbvChatBot] Successfully received response with ${msg.content.length} content blocks`);
+
+      // Extract assistant response
+      const assistantResponse = msg.content.map((el: TextBlock) => el.text).join('\n');
+
+      // Save chat interaction to database
+      try {
+        Logger.log(`[proxyNbvChatBot] Saving chat interaction to database`);
+        const allMessages = [
+          ...messages,
+          { role: 'assistant' as const, content: assistantResponse },
+        ];
+
+        await this.chatHistoryService.saveChatInteraction(
+          finalSessionId,
+          BotType.NBV,
+          allMessages,
+          metadata || {},
+          userId,
+        );
+
+        Logger.log(`[proxyNbvChatBot] Chat interaction saved successfully`);
+      } catch (dbError) {
+        // Log database errors but don't fail the chat
+        Logger.error(`[proxyNbvChatBot] Failed to save chat history: ${dbError.message}`);
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return msg.content.map((el: TextBlock) => {

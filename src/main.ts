@@ -3,9 +3,12 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as bodyParser from 'body-parser';
+import { Request } from 'express';
 
 void (async () => {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    rawBody: true,
+  });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
@@ -28,7 +31,19 @@ void (async () => {
       forbidUnknownValues: false,
     }),
   );
-  app.use(bodyParser.json({ limit: '50mb' }));
+
+  // Configure body parsing with raw body for webhooks
+  app.use(
+    bodyParser.json({
+      limit: '50mb',
+      verify: (req: Request & { rawBody?: Buffer }, res, buf) => {
+        // Store raw body for webhook signature verification
+        if (req.url?.includes('/webhooks')) {
+          req.rawBody = buf;
+        }
+      },
+    }),
+  );
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
   const config = new DocumentBuilder()
     .setTitle('Backend Arcube-Shortened-URL')

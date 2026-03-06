@@ -29,7 +29,7 @@ export class AuthController {
   @Post('signup')
   @ApiOperation({
     summary: 'Register a new user',
-    description: 'Create a new user account with email, password, and name.',
+    description: 'Create a new user account with email, password, and name. New users are assigned the "client" role by default.',
   })
   @ApiBody({ type: SignupDto })
   @ApiCreatedResponse({
@@ -41,6 +41,7 @@ export class AuthController {
           id: '550e8400-e29b-41d4-a716-446655440000',
           email: 'user@example.com',
           name: 'John Doe',
+          role: 'client',
           isActive: true,
           createdAt: '2024-01-15T10:30:00.000Z',
           updatedAt: '2024-01-15T10:30:00.000Z',
@@ -56,7 +57,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'User login',
-    description: 'Authenticate user with email and password.',
+    description: 'Authenticate user with email and password. Returns JWT token with user role.',
   })
   @ApiBody({ type: LoginDto })
   @ApiOkResponse({
@@ -68,6 +69,7 @@ export class AuthController {
           id: '550e8400-e29b-41d4-a716-446655440000',
           email: 'user@example.com',
           name: 'John Doe',
+          role: 'admin',
           isActive: true,
           lastLoginAt: '2024-01-15T10:30:00.000Z',
         },
@@ -83,7 +85,7 @@ export class AuthController {
   @ApiBearerAuth('JWT-auth')
   @ApiOperation({
     summary: 'Get current user profile',
-    description: "Retrieve the authenticated user's profile information.",
+    description: "Retrieve the authenticated user's profile information including role.",
   })
   @ApiOkResponse({
     description: 'User profile retrieved successfully',
@@ -92,6 +94,7 @@ export class AuthController {
         id: '550e8400-e29b-41d4-a716-446655440000',
         email: 'user@example.com',
         name: 'John Doe',
+        role: 'admin',
         isActive: true,
         lastLoginAt: '2024-01-15T10:30:00.000Z',
       },

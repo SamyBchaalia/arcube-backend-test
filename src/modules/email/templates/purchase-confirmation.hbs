@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #4CAF50;
+            margin: 0;
+            font-size: 28px;
+        }
+        .order-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        .product-list {
+            margin: 20px 0;
+        }
+        .product-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .product-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .content-button {
+            display: inline-block;
+            background-color: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✓ Order Confirmed!</h1>
+        </div>
+
+        <p>Hi {{userName}},</p>
+
+        <p>Thank you for your purchase! Your order has been confirmed and you now have access to your products.</p>
+
+        <div class="order-info">
+            <strong>Order Number:</strong> {{orderNumber}}<br>
+            <strong>Total:</strong> ${{total}}
+        </div>
+
+        <h2>Your Products</h2>
+
+        <div class="product-list">
+            {{#each products}}
+            <div class="product-item">
+                <div class="product-name">{{this.name}}</div>
+                <a href="{{this.contentLink}}" class="content-button">View Online</a>
+                {{#if this.hasFile}}
+                <a href="{{this.downloadLink}}" class="download-button">Download File</a>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> You can access your purchased products anytime from your dashboard. Download links remain active for all future use.
+        </div>
+
+        <div class="total">
+            Total Paid: ${{total}}
+        </div>
+
+        <div class="footer">
+            <p>Thank you for choosing {{appName}}!</p>
+            <p>If you have any questions, please don't hesitate to contact us.</p>
+            <p><a href="{{appUrl}}">Visit Our Website</a></p>
+        </div>
+    </div>
+</body>
+</html>

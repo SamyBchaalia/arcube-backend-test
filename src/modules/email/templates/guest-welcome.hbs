@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to NBV Group</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #4CAF50;
+            margin: 0;
+            font-size: 28px;
+        }
+        .credentials {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        .credential-item {
+            margin: 10px 0;
+        }
+        .credential-label {
+            font-weight: bold;
+            color: #666;
+        }
+        .credential-value {
+            font-family: 'Courier New', monospace;
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 10px;
+            border: 1px solid #ddd;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 14px;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .note strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to NBV Group!</h1>
+        </div>
+
+        <p>Hi {{firstName}},</p>
+
+        <p>Thank you for your interest in NBV Group! We've created an account for you so you can access your chat history and stay connected with us.</p>
+
+        <div class="credentials">
+            <h3 style="margin-top: 0; color: #4CAF50;">Your Login Credentials</h3>
+            <div class="credential-item">
+                <span class="credential-label">Email:</span>
+                <span class="credential-value">{{email}}</span>
+            </div>
+            <div class="credential-item">
+                <span class="credential-label">Temporary Password:</span>
+                <span class="credential-value">{{tempPassword}}</span>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Important:</strong> For your security, we recommend changing your password after your first login.
+        </div>
+
+        <div style="text-align: center;">
+            <a href="{{loginUrl}}" class="btn">Log In to Your Account</a>
+        </div>
+
+        <p>With your account, you can:</p>
+        <ul>
+            <li>Access your complete chat history with our AI assistant</li>
+            <li>Review previous conversations and recommendations</li>
+            <li>Get personalized assistance based on your interests</li>
+            <li>Stay updated with the latest from NBV Group</li>
+        </ul>
+
+        <p>If you have any questions or need assistance, please don't hesitate to reach out to our team.</p>
+
+        <p>Best regards,<br>
+        <strong>The NBV Group Team</strong></p>
+
+        <div class="footer">
+            <p>This email was sent because you provided your contact information during a chat session with NBV Group's AI assistant.</p>
+            <p>&copy; 2026 NBV Group. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -6,6 +6,12 @@ import { AppService } from './app.service';
 import { ShortenModule } from './modules/shorten/shorten.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { LinkedInPostsModule } from './modules/linkedin-posts/linkedin-posts.module';
+import { ProductsModule } from './modules/products/products.module';
+import { PackagesModule } from './modules/packages/packages.module';
+import { OrdersModule } from './modules/orders/orders.module';
+import { EmailModule } from './modules/email/email.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { ChatHistoryModule } from './modules/chat-history/chat-history.module';
 
 @Module({
   imports: [
@@ -27,6 +33,12 @@ import { LinkedInPostsModule } from './modules/linkedin-posts/linkedin-posts.mod
     ShortenModule,
     AuthModule,
     LinkedInPostsModule,
+    ProductsModule,
+    PackagesModule,
+    OrdersModule,
+    EmailModule,
+    PaymentsModule,
+    ChatHistoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
