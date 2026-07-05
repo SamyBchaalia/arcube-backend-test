@@ -159,6 +159,71 @@ export class EmailService {
     }
   }
 
+  async sendContactEmails(data: {
+    name: string;
+    email: string;
+    budget: string;
+    message: string;
+  }): Promise<void> {
+    const fromAddress = this.configService.get<string>('EMAIL_FROM_ADDRESS') as string;
+    const fromName = this.configService.get<string>('EMAIL_FROM_NAME') ?? 'No-Reply';
+    const from = `"${fromName}" <${fromAddress}>`;
+    const adminEmail = (this.configService.get<string>('CONTACT_RECIPIENT') ?? fromAddress) as string;
+
+    const clientHtml = `
+      <!DOCTYPE html>
+      <html>
+        <body style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #1a1a2e;">Thank you for reaching out, ${data.name}.</h2>
+          <p>Your message has been received. Sami will review your inquiry and get back to you as soon as possible, typically within 1–2 business days.</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+          <p style="font-size: 13px; color: #777;"><strong>Your submission summary:</strong></p>
+          <table style="font-size: 13px; color: #555; border-collapse: collapse; width: 100%;">
+            <tr><td style="padding: 6px 0; font-weight: bold; width: 100px;">Name</td><td>${data.name}</td></tr>
+            <tr><td style="padding: 6px 0; font-weight: bold;">Email</td><td>${data.email}</td></tr>
+            <tr><td style="padding: 6px 0; font-weight: bold;">Budget</td><td>${data.budget}</td></tr>
+            <tr><td style="padding: 6px 0; font-weight: bold; vertical-align: top;">Message</td><td>${data.message}</td></tr>
+          </table>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+          <p style="font-size: 12px; color: #aaa;">This is an automated confirmation. Please do not reply directly to this email.</p>
+        </body>
+      </html>
+    `;
+
+    const adminHtml = `
+      <!DOCTYPE html>
+      <html>
+        <body style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #1a1a2e;">New Contact Request</h2>
+          <p>You have received a new inquiry through your contact form.</p>
+          <table style="font-size: 14px; color: #555; border-collapse: collapse; width: 100%;">
+            <tr><td style="padding: 8px 0; font-weight: bold; width: 100px;">Name</td><td>${data.name}</td></tr>
+            <tr><td style="padding: 8px 0; font-weight: bold;">Email</td><td><a href="mailto:${data.email}">${data.email}</a></td></tr>
+            <tr><td style="padding: 8px 0; font-weight: bold;">Budget</td><td>${data.budget}</td></tr>
+            <tr><td style="padding: 8px 0; font-weight: bold; vertical-align: top;">Message</td><td>${data.message}</td></tr>
+          </table>
+        </body>
+      </html>
+    `;
+
+    await Promise.all([
+      this.transporter.sendMail({
+        from,
+        to: data.email,
+        subject: 'We received your request — Sami will be in touch shortly',
+        html: clientHtml,
+      }),
+      this.transporter.sendMail({
+        from,
+        to: adminEmail,
+        subject: `New Contact Request from ${data.name}`,
+        html: adminHtml,
+      }),
+    ]);
+
+    Logger.log(`[sendContactEmails] Emails sent for contact request from ${data.email}`);
+  }
+
   private getStatusMessage(status: OrderStatus): string {
     switch (status) {
       case OrderStatus.COMPLETED:

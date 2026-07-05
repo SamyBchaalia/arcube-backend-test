@@ -13,6 +13,7 @@ import { EmailModule } from './modules/email/email.module';
 import { PaymentsModule } from './modules/payments/payments.module';
 import { ChatHistoryModule } from './modules/chat-history/chat-history.module';
 import { QRCodeModule } from './modules/qr-code/qr-code.module';
+import { ContactModule } from './modules/contact/contact.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { QRCodeModule } from './modules/qr-code/qr-code.module';
     PaymentsModule,
     ChatHistoryModule,
     QRCodeModule,
+    ContactModule,
   ],
   controllers: [AppController],
   providers: [AppService],
