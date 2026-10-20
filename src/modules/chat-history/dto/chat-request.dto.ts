@@ -1,4 +1,4 @@
-import { IsArray, IsOptional, IsUUID, ValidateNested, IsString, IsNotEmpty, IsEnum } from 'class-validator';
+import { IsArray, IsOptional, IsUUID, ValidateNested, IsString, IsNotEmpty, IsEnum, MaxLength } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { RegisterGuestDto } from './register-guest.dto';
@@ -38,4 +38,14 @@ export class ChatRequestDto {
   @ValidateNested()
   @Type(() => RegisterGuestDto)
   guestUser?: RegisterGuestDto;
+
+  @ApiPropertyOptional({
+    description: 'Path of the site page the visitor is on (stored on the session and on any lead, and given to the assistant as context)',
+    example: '/services/Sales_Training',
+    maxLength: 200,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(200)
+  pagePath?: string;
 }

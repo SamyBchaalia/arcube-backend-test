@@ -7,12 +7,14 @@ import { ChatHistoryService } from './services/chat-history.service';
 import { ChatHistoryController } from './controllers/chat-history.controller';
 import { AdminChatHistoryController } from './controllers/admin-chat-history.controller';
 import { AuthModule } from '../auth/auth.module';
+import { LeadsModule } from '../leads/leads.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([ChatSession, ChatMessage]),
     PassportModule,
     AuthModule,
+    LeadsModule,
   ],
   controllers: [ChatHistoryController, AdminChatHistoryController],
   providers: [ChatHistoryService],

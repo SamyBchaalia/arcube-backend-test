@@ -19,7 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "make-superadmin": "ts-node -r tsconfig-paths/register scripts/make-superadmin.ts",
-    "make-admin": "ts-node -r tsconfig-paths/register scripts/make-admin.ts"
+    "make-admin": "ts-node -r tsconfig-paths/register scripts/make-admin.ts",
+    "nbv:samples": "ts-node -r tsconfig-paths/register scripts/nbv-sample-transcripts.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3",
@@ -40,6 +41,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "handlebars": "^4.7.8",
+    "libphonenumber-js": "^1.13.15",
     "mongoose": "^9.0.1",
     "nodemailer": "^7.0.12",
     "passport": "^0.7.0",

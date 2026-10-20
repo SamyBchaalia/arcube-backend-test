@@ -5,6 +5,7 @@ import { ApiBody, ApiOkResponse, ApiOperation, ApiTags, ApiBearerAuth } from '@n
 import { ChatRequestDto } from '../../chat-history/dto/chat-request.dto';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from '../../auth/services/auth.service';
+import { getClientIp } from '../../../common/utils/client-ip';
 
 @Controller('shorten')
 @ApiTags('Chatbot')
@@ -43,6 +44,7 @@ export class ShortenController {
           }
         ],
         sessionId: '123e4567-e89b-12d3-a456-426614174000',
+        pagePath: '/services/Sales_Training',
         guestUser: {
           email: 'john@example.com',
           firstName: 'John',
@@ -66,8 +68,9 @@ export class ShortenController {
   ) {
     // Extract metadata from request
     const metadata = {
-      ipAddress: request.ip,
+      ipAddress: getClientIp(request),
       userAgent: request.headers['user-agent'],
+      pagePath: body.pagePath,
     };
 
     // Check for authenticated user via JWT token (optional)

@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as bodyParser from 'body-parser';
-import { Request } from 'express';
+import { Request, Express } from 'express';
 
 void (async () => {
   const app = await NestFactory.create(AppModule, {
@@ -11,6 +11,9 @@ void (async () => {
   });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  // The app sits behind one reverse proxy (nginx): trust its X-Forwarded-* headers
+  // so request.ip is the visitor's address rather than the proxy's.
+  (app.getHttpAdapter().getInstance() as Express).set('trust proxy', 1);
   const port = process.env.PORT || 3000;
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,

@@ -397,3 +397,7 @@ All features implemented, tested, and documented. Ready for frontend integration
 ✅ Security best practices
 
 **Ready to launch! 🚀**
+
+## Lead capture (Lou call-back requests)
+
+See [NBV_LEAD_CAPTURE.md](./NBV_LEAD_CAPTURE.md) for the `request_contact` tool, the `NBV_LEAD_CAPTURE_ENABLED` flag, the `leads` table, the admin leads API and sample transcripts.

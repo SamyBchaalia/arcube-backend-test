@@ -36,6 +36,10 @@ export class ChatSession {
   @Column({ type: 'text', nullable: true })
   userAgent: string;
 
+  /** Last site page the visitor was on when they sent a message. */
+  @Column({ type: 'varchar', length: 200, nullable: true })
+  lastPagePath: string | null;
+
   @Column({ type: 'int', default: 0 })
   messageCount: number;
 

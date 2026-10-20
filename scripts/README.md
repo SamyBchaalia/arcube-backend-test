@@ -212,3 +212,19 @@ npm run make-admin user@example.com
 
 **Last Updated:** February 23, 2026
 **Maintainer:** Backend Team
+
+---
+
+### 3. NBV chatbot sample transcripts
+
+Runs three sample conversations (contact request, service questions, no
+contact intent) against the real model with lead capture enabled, and prints
+them as markdown together with the email Lou would receive. Database and
+email are stubbed: nothing is stored or sent. Needs `ANTHROPIC_API_KEY` in `.env`.
+
+**Usage:**
+```bash
+npx ts-node -r tsconfig-paths/register scripts/nbv-sample-transcripts.ts > docs/NBV_LEAD_CAPTURE_SAMPLES.md
+```
+
+---

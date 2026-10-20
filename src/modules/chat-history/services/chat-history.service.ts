@@ -6,6 +6,7 @@ import { ChatMessage } from '../entities/chat-message.entity';
 import { BotType } from '../enums/bot-type.enum';
 import { MessageRole } from '../enums/message-role.enum';
 import { QuerySessionsDto } from '../dto/query-sessions.dto';
+import { LeadsService } from '../../leads/services/leads.service';
 
 interface MessageInput {
   role: 'user' | 'assistant';
@@ -15,6 +16,7 @@ interface MessageInput {
 interface MetadataInput {
   ipAddress?: string;
   userAgent?: string;
+  pagePath?: string;
 }
 
 @Injectable()
@@ -24,6 +26,7 @@ export class ChatHistoryService {
     private sessionRepository: Repository<ChatSession>,
     @InjectRepository(ChatMessage)
     private messageRepository: Repository<ChatMessage>,
+    private readonly leadsService: LeadsService,
   ) {}
 
   async saveChatInteraction(
@@ -49,6 +52,7 @@ export class ChatHistoryService {
           userId: userId || undefined,
           ipAddress: metadata.ipAddress || undefined,
           userAgent: metadata.userAgent || undefined,
+          lastPagePath: metadata.pagePath?.slice(0, 200) || null,
           messageCount: 0,
           lastMessageAt: new Date(),
           isAnonymous: !userId,
@@ -62,11 +66,27 @@ export class ChatHistoryService {
           session.userId = userId;
           session.isAnonymous = false;
         }
+        if (!session.ipAddress && metadata.ipAddress) session.ipAddress = metadata.ipAddress;
+        if (!session.userAgent && metadata.userAgent) session.userAgent = metadata.userAgent;
+        if (metadata.pagePath) session.lastPagePath = metadata.pagePath.slice(0, 200);
         session.lastMessageAt = new Date();
       }
 
+      // The widget resends the whole conversation on every turn, so only the
+      // messages beyond what is already stored are new. If the stored count is
+      // not smaller than what was sent (only the latest exchange was sent, or an
+      // older session already holds duplicates), store the last user message
+      // and everything after it.
+      let newMessages: MessageInput[];
+      if (messages.length > session.messageCount) {
+        newMessages = messages.slice(session.messageCount);
+      } else {
+        const lastUserIndex = messages.map((m) => m.role).lastIndexOf('user');
+        newMessages = lastUserIndex >= 0 ? messages.slice(lastUserIndex) : messages;
+      }
+
       // Save messages
-      for (const msg of messages) {
+      for (const msg of newMessages) {
         const messageEntity = this.messageRepository.create({
           sessionId: session.id,
           role: msg.role === 'user' ? MessageRole.USER : MessageRole.ASSISTANT,
@@ -143,6 +163,7 @@ export class ChatHistoryService {
       }
 
       const [sessions, total] = await queryBuilder.getManyAndCount();
+      const leadCounts = await this.leadsService.countBySessionIds(sessions.map((s) => s.sessionId));
 
       // Format response
       const formattedSessions = sessions.map((session) => ({
@@ -150,7 +171,9 @@ export class ChatHistoryService {
         sessionId: session.sessionId,
         botType: session.botType,
         messageCount: session.messageCount,
+        leadCount: leadCounts.get(session.sessionId) ?? 0,
         lastMessageAt: session.lastMessageAt,
+        lastPagePath: session.lastPagePath,
         isAnonymous: session.isAnonymous,
         createdAt: session.createdAt,
         user: session.user
@@ -200,12 +223,15 @@ export class ChatHistoryService {
         (a, b) => a.sequenceNumber - b.sequenceNumber,
       );
 
+      const leadCounts = await this.leadsService.countBySessionIds([session.sessionId]);
       const formattedSession = {
         id: session.id,
         sessionId: session.sessionId,
         botType: session.botType,
         messageCount: session.messageCount,
+        leadCount: leadCounts.get(session.sessionId) ?? 0,
         lastMessageAt: session.lastMessageAt,
+        lastPagePath: session.lastPagePath,
         isAnonymous: session.isAnonymous,
         ipAddress: session.ipAddress,
         userAgent: session.userAgent,
@@ -239,6 +265,21 @@ export class ChatHistoryService {
       Logger.error(`[getSessionMessages] Failed to fetch messages: ${error.message}`);
       throw error;
     }
+  }
+
+  /** Ordered transcript of a session with timestamps, for the lead email. */
+  async getTranscript(sessionId: string): Promise<{ role: 'user' | 'assistant'; content: string; createdAt: Date }[]> {
+    const session = await this.sessionRepository.findOne({ where: { sessionId } });
+    if (!session) return [];
+    const messages = await this.messageRepository.find({
+      where: { sessionId: session.id },
+      order: { sequenceNumber: 'ASC' },
+    });
+    return messages.map((m) => ({
+      role: m.role === MessageRole.USER ? 'user' : 'assistant',
+      content: m.content,
+      createdAt: m.createdAt,
+    }));
   }
 
   // User-specific methods (non-admin)

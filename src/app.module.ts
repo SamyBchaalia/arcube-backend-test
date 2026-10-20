@@ -14,6 +14,7 @@ import { PaymentsModule } from './modules/payments/payments.module';
 import { ChatHistoryModule } from './modules/chat-history/chat-history.module';
 import { QRCodeModule } from './modules/qr-code/qr-code.module';
 import { ContactModule } from './modules/contact/contact.module';
+import { LeadsModule } from './modules/leads/leads.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ContactModule } from './modules/contact/contact.module';
     ChatHistoryModule,
     QRCodeModule,
     ContactModule,
+    LeadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
